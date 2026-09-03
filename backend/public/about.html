@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Lifelink Emergency System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === BASE THEME VARIABLES (Consistent with Donor Page) === */
+        :root {
+            --primary-bg: #f7f3f1;
+            --card-background: #ffffff;
+            --main-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --accent-strong: #a05252;
+            --urgent-red: #e74c3c;
+            --action-green: #2ecc71; 
+            --action-green-hover: #27ae60;
+            --border-soft: #e0e0e0;
+            --background-soft: #f9f9f9;
+            --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* === GLOBAL & LAYOUT STYLES (Copied from blood-bank.html) === */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--main-text);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* === HEADER & NAVIGATION STYLES (Copied from blood-bank.html) === */
+        header {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+        nav.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            text-decoration: none;
+        }
+        .logo img {
+            height: 40px;
+            width: 40px;
+            margin-right: 6px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--main-text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--urgent-red);
+        }
+        .homepage-profile-icon {
+            display: block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50%;
+            background-color: var(--urgent-red);
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .btn-primary-small a {
+            background-color: var(--urgent-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-primary-small a:hover {
+            background-color: #c74538;
+            color: white;
+        }
+
+        .homepage-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffa46f;
+  transition: all 0.3s ease;
+}
+
+.homepage-profile-icon:hover {
+  background-color: #ff5c5c;
+  transform: scale(1.05);
+}
+
+.profile-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+        /* === MAIN SECTION TITLES (Copied from blood-bank.html) === */
+        main.container {
+            padding: 40px 20px;
+            min-height: calc(100vh - 100px); /* Adjust for header/footer */
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-strong);
+            margin-bottom: 5px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* --- About Page Specific Styles --- */
+        .about-section {
+            padding: 0; /* Already padded by main.container */
+            text-align: center;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Better responsiveness */
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .vision-card {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            /* Use urgent-red for a consistent look with the blood bank page */
+            border-top: 5px solid var(--urgent-red); 
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .vision-card:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .vision-card h4 {
+            color: var(--main-text);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .vision-card p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+        
+        /* --- Blood Compatibility Section Styles --- */
+        .compatibility-section {
+            background-color: var(--background-soft); 
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .blood-type-selector {
+            display: flex;
+            flex-wrap: wrap; /* Added wrap for mobile */
+            justify-content: center;
+            gap: 10px; /* Reduced gap for mobile */
+            margin-bottom: 40px;
+        }
+
+        .type-btn {
+            background-color: var(--card-background);
+            border: 1px solid var(--urgent-red);
+            color: var(--urgent-red);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .type-btn:hover {
+            background-color: var(--urgent-red);
+            color: white;
+        }
+        
+        .type-btn.selected {
+            background-color: var(--urgent-red);
+            color: white;
+            border-color: var(--urgent-red);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .compatibility-result-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            padding: 30px;
+        }
+        @media (min-width: 768px) {
+            .compatibility-result-container {
+                flex-direction: row; /* Desktop layout */
+            }
+        }
+
+        .result-info {
+            flex-basis: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-right: 15px;
+            border-right: 1px solid var(--border-soft); /* Separator on desktop */
+        }
+        @media (max-width: 767px) {
+             .result-info {
+                 border-right: none;
+                 padding-bottom: 20px;
+             }
+        }
+
+
+        .result-graphic {
+            flex-basis: 40%;
+            text-align: center;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .receive-box, .give-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+        }
+
+        /* Using existing color scheme, but slightly modified for contrast */
+        .receive-box {
+            background-color: #fef7f5; 
+            border: 1px solid #f9d8d1;
+        }
+        .give-box {
+            background-color: #f2f7ff; 
+            border: 1px solid #cce1ff;
+        }
+
+        .receive-box p, .give-box p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--main-text);
+            margin: 0 0 5px 0;
+            padding-left: 30px;
+        }
+
+        .blood-types-display {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            margin-top: 5px;
+            padding-left: 30px;
+        }
+        
+        .donation-motto {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .motto-highlight {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            display: block;
+        }
+        .icon-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: var(--urgent-red);
+        }
+
+        /* Footer Style */
+        footer {
+            background-color: var(--main-text);
+            color: var(--primary-bg);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 600px) {
+             .blood-type-selector {
+                 gap: 8px;
+             }
+             .type-btn {
+                 padding: 8px 12px;
+                 font-size: 0.9rem;
+             }
+             .result-graphic {
+                 padding-left: 0;
+             }
+             .blood-types-display {
+                 font-size: 1.2rem;
+             }
+             .section-title {
+                 font-size: 1.8rem;
+             }
+             .section-subtitle {
+                 font-size: 1rem;
+             }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donor-list.html">Donors</a></li>
+                <li><a href="blood-bank.html">Blood Banks</a></li>
+                <li><a href="organ-list.html">Organs</a></li>
+                <li><a href="about.html" style="color: var(--urgent-red); border-bottom: 2px solid var(--urgent-red); padding-bottom: 5px;">About</a></li>
+                
+                <li id="navProfileLink" style="display: none;">
+  <a href="donor-profile.html" id="navProfileIcon" class="homepage-profile-icon">
+    <img src="ic.png" alt="Profile" class="profile-logo">
+  </a>
+</li>
+
+                <li id="navAuthButton" class="btn-primary-small">
+                    <a href="login.html">Login/Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="about-section">
+            <h2 class="section-title">Our Mission: Connecting to Save Lives</h2>
+            <p class="section-subtitle">A digital platform dedicated to bridging the gap between need and donation.</p>
+
+            <div class="mission-vision-grid">
+                <div class="vision-card">
+                    <h4><i class="fas fa-bullseye" style="color: var(--urgent-red); margin-right: 8px;"></i> Mission</h4>
+                    <p>To provide immediate, reliable connections between hospitals, donors, and patients in urgent need of blood and organs, minimizing response times during critical medical emergencies.</p>
+                </div>
+                <div class="vision-card">
+                    <h4><i class="fas fa-eye" style="color: var(--urgent-red); margin-right: 8px;"></i> Vision</h4>
+                    <p>To become the global standard for emergency donation management, leveraging technology to foster a culture of voluntary donation and transparency across the healthcare sector.</p>
+                </div>
+                <div class="vision-card">
+                    <h4><i class="fas fa-flask" style="color: var(--urgent-red); margin-right: 8px;"></i> Project Overview</h4>
+                    <p>Lifelink simplifies donation management by offering real-time tracking, secure registration, and instant request broadcasting to available, nearby donors and blood banks.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="compatibility-section">
+            <h2 class="section-title">Learn About Donation</h2>
+            <p class="section-subtitle">Select your blood type to understand who you can help and who can help you.</p>
+
+            <div class="blood-type-selector">
+                <button class="type-btn" data-type="A+">A+</button>
+                <button class="type-btn" data-type="O+">O+</button>
+                <button class="type-btn" data-type="B+">B+</button>
+                <button class="type-btn" data-type="AB+">AB+</button>
+                <button class="type-btn selected" data-type="A-">A-</button>
+                <button class="type-btn" data-type="O-">O-</button>
+                <button class="type-btn" data-type="B-">B-</button>
+                <button class="type-btn" data-type="AB-">AB-</button>
+            </div>
+
+            <div class="compatibility-result-container">
+                <div class="result-info">
+                    <div class="receive-box">
+                        <i class="fas fa-tint icon-overlay" style="color: #c74538;"></i>
+                        <p>You can receive blood from:</p>
+                        <div class="blood-types-display" id="receiveTypes">O- A-</div>
+                    </div>
+                    <div class="give-box">
+                        <i class="fas fa-share-square icon-overlay" style="color: #3498db;"></i>
+                        <p>You can donate blood to:</p>
+                        <div class="blood-types-display" id="giveTypes">A+ A- AB+ AB-</div>
+                    </div>
+                </div>
+
+                <div class="result-graphic">
+                    <i class="fas fa-heartbeat" style="font-size: 6rem; color: var(--urgent-red); animation: pulse 1.5s infinite;"></i>
+                    <p class="donation-motto">
+                        One Blood Donation can help save up to 
+                        <span class="motto-highlight">Three Lives</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">&copy; 2025 Lifelink Emergency System. All rights reserved.</div>
+    </footer>
+    
+    <script>
+        // Data for Blood Type Compatibility
+        const compatibilityData = {
+            'A+': { receive: ['A+', 'A-', 'O+', 'O-'], give: ['A+', 'AB+'] },
+            'O+': { receive: ['O+', 'O-'], give: ['O+', 'A+', 'B+', 'AB+'] },
+            'B+': { receive: ['B+', 'B-', 'O+', 'O-'], give: ['B+', 'AB+'] },
+            'AB+': { receive: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], give: ['AB+'] }, // Universal Recipient
+            'A-': { receive: ['A-', 'O-'], give: ['A+', 'A-', 'AB+', 'AB-'] },
+            'O-': { receive: ['O-'], give: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'] }, // Universal Donor
+            'B-': { receive: ['B-', 'O-'], give: ['B+', 'B-', 'AB+', 'AB-'] },
+            'AB-': { receive: ['A-', 'B-', 'O-', 'AB-'], give: ['AB+', 'AB-'] }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.type-btn');
+            const receiveDisplay = document.getElementById('receiveTypes');
+            const giveDisplay = document.getElementById('giveTypes');
+            
+            // Function to update the display
+            function updateCompatibility(type) {
+                const data = compatibilityData[type];
+                receiveDisplay.textContent = data.receive.join(' ');
+                giveDisplay.textContent = data.give.join(' ');
+            }
+
+            // Function to handle button click and styling
+            function handleButtonClick() {
+                // Remove 'selected' class from all
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                // Add 'selected' class to the clicked button
+                this.classList.add('selected');
+                
+                const bloodType = this.getAttribute('data-type');
+                updateCompatibility(bloodType);
+            }
+
+            // Event listener for button clicks
+            buttons.forEach(button => {
+                button.addEventListener('click', handleButtonClick);
+            });
+
+            // Initialize with the default selected type (A-). Find the default button and trigger the update manually.
+            const defaultButton = document.querySelector('.type-btn.selected');
+            if (defaultButton) {
+                updateCompatibility(defaultButton.getAttribute('data-type'));
+            } else {
+                 // Fallback initialization if no button is pre-selected
+                updateCompatibility('A-'); 
+            }
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

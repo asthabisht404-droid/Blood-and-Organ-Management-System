@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor List - Emergency Blood & Organ System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === BASE THEME VARIABLES (Simplified for standalone file) === */
+        :root {
+            --primary-bg: #f7f3f1;
+            --card-background: #ffffff;
+            --main-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --accent-strong: #a05252;
+            --action-green: #2ecc71; /* Teal/Green for Find Match/Contact */
+            --action-green-hover: #27ae60;
+            --urgent-red: #e74c3c;
+            --border-soft: #e0e0e0;
+            --background-soft: #f9f9f9;
+            --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* === GLOBAL STYLES (Required for context) === */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--main-text);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+       /* === HEADER & NAVIGATION STYLES === */
+        header {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+        nav.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            text-decoration: none;
+        }
+        .logo img {
+            height: 40px;
+            width: 40px;
+            margin-right: 6px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--main-text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--urgent-red);
+        }
+        .homepage-profile-icon {
+            display: block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50%;
+            background-color: var(--urgent-red);
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .btn-primary-small a {
+            background-color: var(--urgent-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-primary-small a:hover {
+            background-color: #c74538;
+            color: white;
+        }
+
+        .homepage-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffa46f;
+  transition: all 0.3s ease;
+}
+
+.homepage-profile-icon:hover {
+  background-color: #ff5c5c;
+  transform: scale(1.05);
+}
+
+.profile-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+        /* === DONOR MANAGEMENT SECTION STYLES === */
+        .donor-management {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-strong);
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* --- CONTROL BAR LAYOUT --- */
+        .control-bar {
+            display: grid;
+            grid-template-columns: 1fr auto; 
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-filters input, .search-filters select {
+            padding: 10px 15px;
+            border: 1px solid var(--border-soft);
+            border-radius: 8px;
+            background-color: var(--card-background);
+            font-size: 1rem;
+            color: var(--main-text);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-filters input:focus, .search-filters select:focus {
+            border-color: var(--accent-strong);
+            box-shadow: 0 0 0 2px var(--accent-soft);
+        }
+
+        .search-filters input {
+            flex-grow: 2;
+            min-width: 250px;
+        }
+
+        .search-filters select {
+            flex-grow: 1; 
+            min-width: 150px;
+        }
+
+        .add-donor-btn {
+            padding: 12px 25px;
+            background-color: var(--urgent-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.1s;
+            white-space: nowrap;
+        }
+        .add-donor-btn i {
+            margin-right: 8px;
+        }
+        .add-donor-btn:hover {
+            background-color: #c74538;
+            transform: translateY(-1px);
+        }
+        
+        /* --- DONOR TABLE STYLING --- */
+        .donor-table-container {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .donor-table th, .donor-table td {
+            padding: 15px 20px;
+        }
+        .donor-table th {
+            background-color: var(--background-soft);
+            font-weight: 700;
+            color: var(--light-text);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            border-bottom: 2px solid var(--border-soft);
+        }
+        .donor-table td {
+            color: var(--main-text);
+            border-bottom: 1px solid var(--border-soft);
+            font-size: 0.95rem;
+        }
+        .donor-table tr:last-child td {
+            border-bottom: none;
+        }
+        .donor-table tbody tr:hover {
+            background-color: var(--background-soft);
+        }
+        
+        /* Specific Cell Styles */
+        .status-available {
+            color: var(--action-green);
+            font-weight: 600;
+        }
+        .status-within-month {
+            color: var(--light-text);
+            font-weight: 600;
+        }
+        .contact-btn {
+            background-color: var(--action-green);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .contact-btn:hover {
+            background-color: var(--action-green-hover);
+        }
+
+        /* === MODAL STYLES (New) === */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 5% auto; 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .close-button {
+            color: var(--light-text);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--accent-strong);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Form Styles inside Modal */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--main-text);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            background-color: var(--background-soft);
+            color: var(--main-text);
+        }
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 10px;
+        }
+        .btn-submit-donor {
+            background-color: var(--action-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-submit-donor:hover {
+            background-color: var(--action-green-hover);
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-check input[type="checkbox"] {
+            width: auto;
+        }
+
+        @media (max-width: 900px) {
+            .control-bar {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .search-filters {
+                flex-direction: column;
+            }
+            .search-filters input, .search-filters select {
+                width: 100%;
+                min-width: 0;
+            }
+            .add-donor-btn {
+                width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: 1 / 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donor-list.html" style="color: var(--urgent-red); border-bottom: 2px solid var(--urgent-red); padding-bottom: 5px;">Donors</a></li>
+                <li><a href="blood-bank.html">Blood Banks</a></li>
+                <li><a href="organ-list.html">Organs</a></li>
+                <li><a href="about.html">About</a></li>
+                
+                <li id="navProfileLink" style="display: none;">
+  <a href="donor-profile.html" id="navProfileIcon" class="homepage-profile-icon">
+    <img src="ic.png" alt="Profile" class="profile-logo">
+  </a>
+</li>
+
+                <li id="navAuthButton" class="btn-primary-small">
+                    <a href="login.html">Login/Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="donor-management container">
+        <h2 class="section-title">Registered Donor Directory</h2>
+        <p class="section-subtitle">Search, view, and manage all potential blood and organ donors.</p>
+
+        <div class="control-bar">
+            <div class="search-filters">
+                <input type="text" id="searchInput" placeholder="Search by Name, City, or Phone...">
+                <select id="bloodTypeFilter">
+                    <option value="">Filter by Blood Type</option>
+                    <option value="O+">O+</option>
+                    <option value="A-">A-</option>
+                    <option value="A+">A+</option>
+                    <option value="O-">O-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+                <select id="organAvailabilityFilter">
+                    <option value="">Filter by Organ Donor</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            
+            <button class="add-donor-btn" onclick="window.location.href='register.html'">
+    <i class="fas fa-user-plus"></i> Add New Donor
+</button>
+
+        </div>
+        
+        <div class="donor-table-container">
+            <table class="donor-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Blood Type</th>
+                        <th>Age</th>
+                        <th>Location</th>
+                        <th>Organ Donor</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="donorTableBody">
+                    <tr><td colspan="8" style="text-align: center; color: var(--light-text);">Loading available donors...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <div id="addDonorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('addDonorModal')">&times;</span>
+            <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--main-text);">Add New Donor</h2>
+            
+            <form id="addDonorForm" onsubmit="addNewDonor(event)">
+                <div class="form-grid">
+                    
+                    <div class="form-group full-width">
+                        <label for="donorFullName">Full Name</label>
+                        <input type="text" id="donorFullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorPhone">Phone</label>
+                        <input type="tel" id="donorPhone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorBloodType">Blood Type</label>
+                        <select id="donorBloodType" required>
+                            <option value="">Select</option>
+                            <option value="O+">O+</option>
+                            <option value="A+">A+</option>
+                            <option value="B+">B+</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O-">O-</option>
+                            <option value="A-">A-</option>
+                            <option value="B-">B-</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorCity">City</label>
+                        <input type="text" id="donorCity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorState">State</label>
+                        <input type="text" id="donorState" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donorAge">Age</label>
+                        <input type="number" id="donorAge" min="18" max="120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorGender">Gender</label>
+                        <select id="donorGender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width" style="display: flex; gap: 20px; margin-top: 10px;">
+                        <div class="form-check">
+                            <input type="checkbox" id="donorIsOrganDonor">
+                            <label for="donorIsOrganDonor">Organ Donor</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="donorIsAvailable" checked>
+                            <label for="donorIsAvailable">Available Now</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="add-donor-btn" onclick="closeModal('addDonorModal')">Cancel</button>
+                        <button type="submit" class="btn-submit-donor">Add Donor</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // --- DATA SETUP & UTILITIES ---
+        function getStoredDonors() {
+            // Default data initialization (copied from previous response)
+            const defaultDonors = [
+                { id: 1, fullName: "Ananya Singh", age: 18, bloodType: "A-", isOrganDonor: true, location: "Haldwani", isAvailable: true, phone: '1234567890', email: 'ananya@gmail.com', city: 'Haldwani', state: 'Uttarakhand', medicalConditions: 'none', lastDonation: '' },
+                { id: 2, fullName: "Neelesh", age: 23, bloodType: "A+", isOrganDonor: true, location: "Haldwani", isAvailable: false, phone: '9876543210', email: 'neelesh@gmail.com', city: 'Haldwani', state: 'Uttarakhand', medicalConditions: 'Mild Asthma', lastDonation: '2025-05-01' },
+                { id: 3, fullName: "Priya Sharma", age: 30, bloodType: "B+", isOrganDonor: false, location: "Delhi", isAvailable: true, phone: '5551234567', email: 'priya@gmail.com', city: 'Delhi', state: 'NCT', medicalConditions: 'none', lastDonation: '' },
+                { id: 4, fullName: "Rohan Verma", age: 45, bloodType: "O-", isOrganDonor: true, location: "Mumbai", isAvailable: false, phone: '1112223334', email: 'rohan@gmail.com', city: 'Mumbai', state: 'Maharashtra', medicalConditions: 'High Blood Pressure', lastDonation: '2024-01-15' },
+            ];
+            
+            let donors = localStorage.getItem('donors');
+            if (!donors) {
+                localStorage.setItem('donors', JSON.stringify(defaultDonors));
+                donors = defaultDonors;
+            } else {
+                donors = JSON.parse(donors);
+                if (donors.length === 0) {
+                     localStorage.setItem('donors', JSON.stringify(defaultDonors));
+                     donors = defaultDonors;
+                }
+            }
+            return donors;
+        }
+
+        // --- MODAL CONTROL FUNCTIONS ---
+        window.openModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        };
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        };
+        
+        // --- ADD NEW DONOR FUNCTIONALITY (NEW) ---
+        window.addNewDonor = function(event) {
+            event.preventDefault(); // Stop form submission
+
+            let allDonors = getStoredDonors();
+
+            // Find the highest existing ID and increment for the new donor
+            const newId = allDonors.length > 0 ? Math.max(...allDonors.map(d => d.id)) + 1 : 1;
+
+            // Gather data from the modal form
+            const newDonor = {
+                id: newId,
+                fullName: document.getElementById('donorFullName').value,
+                phone: document.getElementById('donorPhone').value,
+                bloodType: document.getElementById('donorBloodType').value,
+                city: document.getElementById('donorCity').value,
+                state: document.getElementById('donorState').value,
+                location: document.getElementById('donorCity').value, // Use city for location in table
+                age: parseInt(document.getElementById('donorAge').value) || 0,
+                gender: document.getElementById('donorGender').value,
+                isOrganDonor: document.getElementById('donorIsOrganDonor').checked,
+                isAvailable: document.getElementById('donorIsAvailable').checked,
+                // Additional fields not in the form but good to initialize
+                email: 'new_' + newId + '@lifelink.com', // Mock email
+                medicalConditions: 'none', 
+                lastDonation: '',
+            };
+
+            // Add the new donor to the list
+            allDonors.push(newDonor);
+
+            // Save the updated list back to local storage
+            localStorage.setItem('donors', JSON.stringify(allDonors));
+            
+            // Refresh the table with the new donor
+            applyFilters();
+            
+            // Clear the form and close the modal
+            document.getElementById('addDonorForm').reset();
+            closeModal('addDonorModal');
+            alert(`New Donor '${newDonor.fullName}' added successfully!`);
+        };
+
+        // --- RENDERING LOGIC ---
+        function renderDonorTable(donors) {
+            const tableBody = document.getElementById('donorTableBody');
+            tableBody.innerHTML = ''; 
+
+            if (donors.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--light-text); padding: 30px;">No donors found matching the criteria.</td></tr>`;
+                return;
+            }
+
+            donors.forEach(donor => {
+                const isOrganDonorText = donor.isOrganDonor ? 'Yes' : 'No';
+                const statusText = donor.isAvailable ? 'Available' : 'Within Month';
+                const statusClass = donor.isAvailable ? 'status-available' : 'status-within-month';
+
+                const row = `
+                    <tr>
+                        <td>${donor.id}</td>
+                        <td>${donor.fullName}</td>
+                        <td>${donor.bloodType}</td>
+                        <td>${donor.age}</td>
+                        <td>${isOrganDonorText}</td>
+                        <td>${donor.location}</td>
+                        <td class="${statusClass}">${statusText}</td>
+                        <td><button class="contact-btn" onclick="contactDonor('${donor.phone}')">Contact</button></td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        // --- FILTERING LOGIC ---
+        function applyFilters() {
+            const allDonors = getStoredDonors();
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const bloodTypeFilter = document.getElementById('bloodTypeFilter').value;
+            const organAvailabilityFilter = document.getElementById('organAvailabilityFilter').value;
+
+            const filteredDonors = allDonors.filter(donor => {
+                // 1. Search Filter
+                const matchesSearch = donor.fullName.toLowerCase().includes(searchInput) ||
+                                      (donor.city && donor.city.toLowerCase().includes(searchInput)) ||
+                                      donor.phone.includes(searchInput);
+
+                // 2. Blood Type Filter
+                const matchesBloodType = bloodTypeFilter === '' || donor.bloodType === bloodTypeFilter;
+
+                // 3. Organ Donor Filter
+                const isOrganDonorText = donor.isOrganDonor ? 'Yes' : 'No';
+                const matchesOrganDonor = organAvailabilityFilter === '' || isOrganDonorText === organAvailabilityFilter;
+
+                return matchesSearch && matchesBloodType && matchesOrganDonor;
+            });
+
+            renderDonorTable(filteredDonors);
+        }
+
+        // --- ACTION HANDLERS (Mock) ---
+        window.contactDonor = function(phone) {
+    alert(`Contacting donor at phone number: ${phone}`);
+};
+
+        
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial load
+            applyFilters(); 
+            
+            // Add event listeners to filters for live filtering
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            document.getElementById('bloodTypeFilter').addEventListener('change', applyFilters);
+            document.getElementById('organAvailabilityFilter').addEventListener('change', applyFilters);
+        });
+
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

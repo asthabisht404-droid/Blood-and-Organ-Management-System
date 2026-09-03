@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Lifelink</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* === CUSTOM THEME VARIABLES === */
+        :root {
+            --primary-bg: #f7f3f1; /* Soft, warm background */
+            --card-bg: #ffffff;
+            --main-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --accent-soft: #fcebeb; /* Light pink/peach */
+            --accent-strong: #a05252; /* Darker peach/brown for initials/theme */
+            --organ-color: #e74c3c; /* Red for Organ Donor badge */
+            --blood-color: #a05252;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+        }
+
+        /* === GENERAL LAYOUT & BODY === */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-bg);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            padding-top: 30px;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: color 0.2s;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+            color: var(--accent-strong);
+        }
+        
+        /* === LEFT SIDEBAR === */
+        .profile-sidebar {
+            flex: 0 0 320px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            padding: 30px;
+            text-align: center;
+            height: fit-content; /* Prevents stretching */
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--accent-soft);
+            color: var(--accent-strong);
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 100px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--main-text);
+            margin-bottom: 15px;
+        }
+
+        /* Badges */
+        .profile-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .blood-type-badge {
+            background-color: var(--accent-soft);
+            color: var(--blood-color);
+        }
+
+        .organ-donor-badge {
+            background-color: #fff0f0;
+            color: var(--organ-color);
+        }
+        
+        /* Contact Items */
+        .profile-contact-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            color: var(--main-text);
+            padding-left: 20px;
+        }
+
+        .profile-contact-item i {
+            color: var(--accent-strong);
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .profile-contact-item span {
+            color: var(--main-text);
+        }
+
+        /* === SIDEBAR BUTTONS === */
+        .btn-sidebar-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .btn-edit-profile {
+            background-color: var(--card-bg);
+            color: var(--main-text);
+            border-color: #ddd;
+        }
+        
+        .btn-edit-profile:hover {
+            background-color: var(--accent-soft);
+            border-color: var(--accent-strong);
+        }
+
+        /* Logout */
+        .btn-logout {
+            background-color: var(--card-bg);
+            color: var(--main-text);
+            border-color: #ddd;
+        }
+        .btn-logout:hover {
+            background-color: var(--accent-soft);
+            border-color: var(--accent-strong);
+        }
+        
+        /* === RIGHT CONTENT & TABS === */
+        .profile-content {
+            flex-grow: 1;
+        }
+
+        .profile-tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 0;
+            background-color: var(--primary-bg); 
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+
+        .tab-button {
+            padding: 15px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background-color: var(--primary-bg);
+            color: var(--light-text);
+            border: none;
+            margin-bottom: -1px; 
+        }
+
+        .tab-button.active {
+            background-color: var(--card-bg);
+            color: var(--main-text);
+            border: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--card-bg); 
+            border-radius: 8px 8px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 0 12px 12px 12px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            min-height: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px 50px;
+        }
+        
+        .tab-content.active-tab {
+            display: grid; 
+        }
+
+        /* Detail Groups */
+        .detail-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-group.full-row {
+            grid-column: 1 / -1; 
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--light-text);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--main-text);
+            font-size: 1rem;
+        }
+
+        .no-data-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            color: var(--light-text);
+        }
+        
+        /* === MODAL STYLES (Restored) === */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 600px; /* Control max width */
+        }
+
+        .close-button {
+            color: var(--light-text);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--accent-strong);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Form Styles inside Modal */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--main-text);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            background-color: var(--primary-bg);
+            color: var(--main-text);
+        }
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 10px;
+        }
+        .btn-save {
+            background-color: var(--accent-strong);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-save:hover {
+            background-color: #8c4545;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-check label {
+            margin: 0;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Link -->
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="profile-container">
+        
+        <!-- LEFT SIDEBAR -->
+        <div class="profile-sidebar">
+            <div class="profile-avatar" id="profileAvatar">AS</div>
+            <h3 class="profile-name" id="profileName">Loading...</h3>
+            
+            <div class="profile-badges">
+                <span class="badge blood-type-badge" id="profileBloodType">--</span>
+                <span class="badge organ-donor-badge" id="profileOrganDonor"></span>
+            </div>
+
+            <!-- Contact Details -->
+            <div style="border-top: 1px solid #eee; padding-top: 20px;">
+                <p class="profile-contact-item"><i class="fas fa-envelope"></i> <span id="profileEmail"></span></p>
+                <p class="profile-contact-item"><i class="fas fa-phone"></i> <span id="profilePhone"></span></p>
+                <p class="profile-contact-item"><i class="fas fa-map-marker-alt"></i> <span id="profileCityState"></span></p>
+                <p class="profile-contact-item"><i class="fas fa-calendar-alt"></i> Registered <span id="profileRegisteredDate"></span></p>
+            </div>
+            
+            <!-- Actions -->
+            <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
+                <button class="btn-sidebar-action btn-edit-profile" onclick="openModal('editProfileModal')">
+                    <i class="fas fa-pencil-alt"></i> Edit Profile
+                </button>
+                <button class="btn-sidebar-action btn-logout" onclick="window.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="profile-content">
+            <!-- Tabs -->
+            <div class="profile-tabs">
+                <button class="tab-button active" onclick="openTab(event, 'profileDetails')">Profile Details</button>
+            </div>
+            
+            <!-- 1. Profile Details Tab Content -->
+            <div id="profileDetails" class="tab-content active-tab">
+                <div class="detail-group">
+                    <p class="detail-label">Age</p>
+                    <p class="detail-value" id="detailAge">-- years</p>
+                </div>
+                <div class="detail-group">
+                    <p class="detail-label">Gender</p>
+                    <p class="detail-value" id="detailGender">--</p>
+                </div>
+                <div class="detail-group full-row">
+                    <p class="detail-label">Address</p>
+                    <p class="detail-value" id="detailAddress">--</p>
+                </div>
+                <div class="detail-group">
+                    <p class="detail-label">Availability</p>
+                    <p class="detail-value" id="detailAvailability">--</p>
+                </div>
+                <div class="detail-group">
+                    <p class="detail-label">Last Donated</p>
+                    <p class="detail-value" id="detailLastDonation">--</p>
+                </div>
+                <div class="detail-group full-row">
+                    <p class="detail-label">Medical Conditions</p>
+                    <p class="detail-value" id="detailMedicalConditions">--</p>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- EDIT PROFILE MODAL (Restored) -->
+    <!-- ============================================== -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('editProfileModal')">&times;</span>
+            <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--main-text);">Edit Profile Information</h2>
+            
+            <form id="editProfileForm" onsubmit="saveProfile(event)">
+                <div class="form-grid">
+                    
+                    <div class="form-group full-width">
+                        <label for="editFullName">Full Name</label>
+                        <input type="text" id="editFullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editPhone">Phone</label>
+                        <input type="tel" id="editPhone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editBloodType">Blood Type</label>
+                        <input type="text" id="editBloodType" disabled title="Blood type cannot be edited.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCity">City</label>
+                        <input type="text" id="editCity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editState">State</label>
+                        <input type="text" id="editState" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="editAddress">Address (Optional)</label>
+                        <input type="text" id="editAddress">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editAge">Age</label>
+                        <input type="number" id="editAge" min="18" max="120">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editGender">Gender</label>
+                        <select id="editGender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="editMedicalConditions">Medical Conditions</label>
+                        <textarea id="editMedicalConditions" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editLastDonation">Last Donation Date (YYYY-MM-DD)</label>
+                        <input type="date" id="editLastDonation">
+                    </div>
+                    
+                    <div class="form-group full-width" style="display: flex; gap: 20px; margin-top: 10px;">
+                        <div class="form-check">
+                            <input type="checkbox" id="editIsOrganDonor">
+                            <label for="editIsOrganDonor">I am an Organ Donor</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="editIsAvailable">
+                            <label for="editIsAvailable">I am currently Available for Donation</label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-sidebar-action" onclick="closeModal('editProfileModal')">Cancel</button>
+                        <button type="submit" class="btn-save">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+<script>
+    // --- AUTH & LOGOUT (Kept as is) ---
+    window.logout = function() {
+        // Clear all session/user data from the client
+        localStorage.clear(); 
+        window.location.assign('login.html'); 
+    };
+
+    // --- MODAL CONTROL FUNCTIONS ---
+    window.openModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        if (modalId === 'editProfileModal') {
+            prefillEditProfileForm(); 
+        }
+        
+        modal.style.display = 'block';
+    };
+
+    window.closeModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = 'none';
+    };
+
+    // --- TAB SWITCHING LOGIC (Kept as is) ---
+    window.openTab = function(evt, tabName) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab'));
+        document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+
+        const selectedTab = document.getElementById(tabName);
+        if (selectedTab) selectedTab.classList.add('active-tab');
+        if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+    }
+
+    // A helper to get initials (relies only on fullName, so it's safe)
+    function getInitials(fullName) {
+        if (!fullName) return 'AS';
+        const parts = fullName.split(' ');
+        if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+        if (parts.length > 1) return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+        return 'AS';
+    }
+
+
+    // =================================================================
+    // API-BASED PROFILE LOGIC (FIXED)
+    // =================================================================
+
+    /**
+     * ✅ FIX: Loads user profile data directly from the server's API.
+     * Uses the email stored in localStorage as the unique identifier.
+     */
+    async function loadUserProfile() {
+        const userEmail = localStorage.getItem('email');
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+        if (!isLoggedIn || !userEmail) {
+            window.location.assign('login.html'); 
+            return;
+        }
+
+        try {
+            // 1. Fetch user data from the server
+            const response = await fetch('/profile', {
+                method: 'POST', // Use POST to securely send email in body
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: userEmail }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Could not fetch user profile from server.');
+            }
+
+            const donor = await response.json();
+            
+            // 2. Fallback check: If server returns an empty object or error data
+            if (!donor || donor.message || donor.error) {
+                document.getElementById('profileName').textContent = 'Error: No Profile Data';
+                console.error("Server returned an error or empty profile:", donor);
+                return;
+            }
+
+            // 3. Update all localStorage keys with the server's current data
+            // This fixes the persistence issue across tabs and keeps the client in sync.
+            for (const key in donor) {
+                 // Checkboxes (0/1) stored in SQLite should be converted to 'true'/'false' in localStorage
+                if (key === 'isOrganDonor' || key === 'isAvailable') {
+                    localStorage.setItem(key, donor[key] ? 'true' : 'false');
+                } else {
+                    localStorage.setItem(key, donor[key] ? String(donor[key]) : '');
+                }
+            }
+
+
+            // 4. Populate HTML Elements
+            
+            // Sidebar Data
+            document.getElementById('profileAvatar').textContent = getInitials(donor.fullName);
+            document.getElementById('profileName').textContent = donor.fullName || 'N/A';
+            document.getElementById('profileEmail').textContent = donor.email || 'N/A';
+            document.getElementById('profilePhone').textContent = donor.phone || 'N/A';
+            document.getElementById('profileBloodType').textContent = donor.bloodType || '--';
+            
+            const city = donor.city || (donor.fullAddress ? donor.fullAddress.split(',')[1]?.trim() : 'N/A');
+            const state = donor.state || (donor.fullAddress ? donor.fullAddress.split(',')[2]?.trim() : 'N/A');
+            document.getElementById('profileCityState').textContent = `${city}, ${state}`;
+            
+            // Badges
+            const isOrganDonor = donor.isOrganDonor; // 0 or 1 from server
+            const organDonorBadge = document.getElementById('profileOrganDonor');
+            if (isOrganDonor) {
+                organDonorBadge.innerHTML = `<i class="fas fa-heart"></i> Organ Donor`;
+                organDonorBadge.style.backgroundColor = '#fff0f0';
+                organDonorBadge.style.color = 'var(--organ-color)';
+            } else {
+                organDonorBadge.innerHTML = `<i class="fas fa-times-circle"></i> Not Organ Donor`;
+                organDonorBadge.style.backgroundColor = '#f0f0f0';
+                organDonorBadge.style.color = 'var(--light-text)';
+            }
+
+            // Profile Details Tab
+            document.getElementById('detailAge').textContent = `${donor.age || '--'} years`;
+            document.getElementById('detailGender').textContent = donor.gender || '--';
+            document.getElementById('detailAddress').textContent = donor.fullAddress || 'Address not listed';
+            
+            const isAvailable = donor.isAvailable; // 0 or 1 from server
+            const availabilityText = isAvailable ? 'Available Now' : 'Within Month';
+            document.getElementById('detailAvailability').textContent = availabilityText;
+            
+            document.getElementById('detailLastDonation').textContent = donor.lastDonation || 'Never';
+            document.getElementById('detailMedicalConditions').textContent = donor.medicalConditions || 'none';
+            document.getElementById('profileRegisteredDate').textContent = donor.registeredAt ? new Date(donor.registeredAt).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric'}) : 'N/A'; 
+
+
+        } catch (error) {
+            console.error('Error loading user profile:', error);
+            document.getElementById('profileName').textContent = 'Connection Error';
+        }
+    }
+
+    /**
+     * Pre-fills the Edit Profile form using data from localStorage (updated by loadUserProfile).
+     */
+    function prefillEditProfileForm() {
+        // We now pull directly from localStorage, assuming loadUserProfile has run
+        document.getElementById('editFullName').value = localStorage.getItem('fullName') || '';
+        document.getElementById('editPhone').value = localStorage.getItem('phone') || '';
+        document.getElementById('editBloodType').value = localStorage.getItem('bloodType') || 'Unknown'; 
+        
+        // Use the separate fields (city/state) or fallback logic
+        const fullAddressParts = localStorage.getItem('fullAddress')?.split(',')?.map(p => p.trim()) || [];
+        document.getElementById('editCity').value = localStorage.getItem('city') || fullAddressParts[1] || ''; 
+        document.getElementById('editState').value = localStorage.getItem('state') || fullAddressParts[2] || '';
+        document.getElementById('editAddress').value = localStorage.getItem('fullAddress') || '';
+
+        document.getElementById('editAge').value = localStorage.getItem('age') || '';
+        document.getElementById('editGender').value = localStorage.getItem('gender') || 'Male';
+        document.getElementById('editLastDonation').value = localStorage.getItem('lastDonation') || '';
+        document.getElementById('editMedicalConditions').value = localStorage.getItem('medicalConditions') || '';
+        
+        // Checkboxes: MUST convert saved string 'true'/'false' back to boolean
+        document.getElementById('editIsOrganDonor').checked = localStorage.getItem('isOrganDonor') === 'true';
+        document.getElementById('editIsAvailable').checked = localStorage.getItem('isAvailable') === 'true';
+    }
+
+
+    /**
+     * ✅ FIX: Sends profile updates to the server and reloads client data on success.
+     */
+    window.saveProfile = async function(event) {
+        event.preventDefault(); 
+        
+        const userEmail = localStorage.getItem('email');
+        if (!userEmail) {
+            alert('User session lost. Please log in again.');
+            return;
+        }
+
+        // 1. Gather form data
+        const updatedData = {
+            email: userEmail, // Key for finding the user on the server
+            fullName: document.getElementById('editFullName').value,
+            phone: document.getElementById('editPhone').value,
+            city: document.getElementById('editCity').value,
+            state: document.getElementById('editState').value,
+            // Reconstruct full address from all parts for backend consistency
+            bloodType: document.getElementById("editBloodType").value,  // ✅ Add this
+            fullAddress: `${document.getElementById('editAddress').value}, ${document.getElementById('editCity').value}, ${document.getElementById('editState').value}`, 
+            age: parseInt(document.getElementById('editAge').value) || 0,
+            gender: document.getElementById('editGender').value,
+            lastDonation: document.getElementById('editLastDonation').value,
+            medicalConditions: document.getElementById('editMedicalConditions').value,
+            // Checkboxes converted to boolean (or 0/1, server-side handles 0/1 conversion)
+            isOrganDonor: document.getElementById('editIsOrganDonor').checked ? 1 : 0,
+            isAvailable: document.getElementById('editIsAvailable').checked ? 1 : 0,
+        };
+
+        try {
+            // 2. Send update to the server's /update-profile endpoint
+            const response = await fetch('/update-profile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(result.message || 'Profile saved successfully!');
+                
+                // 3. Reload profile from the server to ensure client-side keys are fresh
+                await loadUserProfile(); 
+                
+                // Close the modal
+                closeModal('editProfileModal');
+
+            } else {
+                alert(result.message || 'Error saving profile on the server.');
+            }
+        } catch (error) {
+            console.error('Network error during profile update:', error);
+            alert('A network error occurred. Could not save profile.');
+        }
+    };
+
+
+    // --- INITIALIZE ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Attach event listeners for clarity
+        const editButton = document.querySelector('.btn-edit-profile');
+        if (editButton) {
+            editButton.onclick = () => openModal('editProfileModal');
+        }
+
+        const editForm = document.getElementById('editProfileForm');
+        if (editForm) {
+            editForm.addEventListener('submit', window.saveProfile);
+        }
+
+        // Load profile data on page load
+        loadUserProfile();
+    });
+</script>
+</body>
+</html>

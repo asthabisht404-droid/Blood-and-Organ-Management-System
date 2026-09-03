@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Blood & Organ System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<style>
+    /* NOTE: It's best practice to move this block to your style.css */
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ea5858;
+      text-transform: none;
+      letter-spacing: 1px;
+    }
+
+    .logo img {
+      height: 40px;
+      width: 40px;
+      margin-right: 6px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+</style>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+              <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </div>
+            
+            </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="donor-list.html">Donors</a></li>
+        <li><a href="blood-bank.html">Blood Banks</a></li>
+        <li><a href="organ-list.html">Organs</a></li>
+        <li><a href="about.html">About</a></li>
+        
+        <li id="navProfileLink" style="display: none;">
+  <a href="donor-profile.html" id="navProfileIcon" class="homepage-profile-icon">
+    <img src="ic.png" alt="Profile" class="profile-logo">
+  </a>
+</li>
+
+
+        <li id="navAuthButton" class="btn-primary-small">
+            <a href="login.html">Login/Sign Up</a>
+        </li>
+    </ul>
+</nav>
+</header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-content">
+                <p class="tagline">E. Blood & Organ System</p>
+                <h1>Emergency Blood & Organ System</h1>
+                <p class="mission">Connecting the world's Donors & Patients, with need.</p>
+                <div class="hero-actions">
+                    <button class="action-btn"><i class="fas fa-search"></i> Find Donors</button>
+                    
+                    <button class="action-btn primary-fill" onclick="goToDonorRegister()">
+                        <i class="fas fa-user-plus"></i> Register Donor
+                    </button>
+                    <button class="action-btn" onclick="openModal('requestBloodModal')">
+                        <i class="fas fa-hand-holding-medical"></i> Request Blood / Organs
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Commitment to transparency, best service & secure life.</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Donor Management</h3>
+                    <p>Register, track, and manage all active and inactive donors seamlessly.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>Request Management</h3>
+                    <p>Process urgent requests from hospitals and match them with available inventory.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-boxes"></i>
+                    <h3>Inventory Management</h3>
+                    <p>Real-time tracking of blood types, organs, and hospital stock levels.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">Live Statistics</h2>
+                <p class="section-subtitle">Real-time data on system activity and emergency status.</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <p class="stat-number">6</p>
+                        <p class="stat-label">Donors Queuing</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <p class="stat-number">24/7</p>
+                        <p class="stat-label">Service Day</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-hourglass-half"></i>
+                        <p class="stat-number">&lt; 30min</p>
+                        <p class="stat-label">Response Time</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <p class="stat-number">98%</p>
+                        <p class="stat-label">Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="inventory-section container">
+            <h2 class="section-title">Blood Bank Inventory</h2>
+            <p class="section-subtitle">Real-time blood availability across all types</p>
+
+            <div class="blood-inventory-grid">
+                
+                <div class="blood-card">
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">A+</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">45</span> / 100 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 45%;"></div>
+                        </div>
+                        <p class="capacity-text">45% capacity</p>
+                    </div>
+                </div>
+
+                <div class="blood-card">
+                    <span class="urgent-tag">Urgent</span>
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">A-</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">12</span> / 50 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 24%;"></div>
+                        </div>
+                        <p class="capacity-text">24% capacity</p>
+                    </div>
+                </div>
+                
+                <div class="blood-card">
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">B+</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">38</span> / 100 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 38%;"></div>
+                        </div>
+                        <p class="capacity-text">38% capacity</p>
+                    </div>
+                </div>
+
+                <div class="blood-card">
+                    <span class="urgent-tag">Urgent</span>
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">B-</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">8</span> / 50 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 16%;"></div>
+                        </div>
+                        <p class="capacity-text">16% capacity</p>
+                    </div>
+                </div>
+
+                <div class="blood-card">
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">AB+</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">22</span> / 50 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 44%;"></div>
+                        </div>
+                        <p class="capacity-text">44% capacity</p>
+                    </div>
+                </div>
+
+                <div class="blood-card">
+                    <span class="urgent-tag">Urgent</span>
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">AB-</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">5</span> / 30 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 17%;"></div>
+                        </div>
+                        <p class="capacity-text">17% capacity</p>
+                    </div>
+                </div>
+                
+                <div class="blood-card">
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">O+</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">62</span> / 120 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 52%;"></div>
+                        </div>
+                        <p class="capacity-text">52% capacity</p>
+                    </div>
+                </div>
+
+                <div class="blood-card">
+                    <div class="blood-header">
+                        <i class="fas fa-tint blood-icon"></i>
+                        <div>
+                            <p class="blood-type-label">Blood Type</p>
+                            <h3 class="blood-type-name">O-</h3>
+                        </div>
+                    </div>
+                    <div class="blood-details">
+                        <p class="available">Available <span class="units">18</span> / 60 units</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <p class="capacity-text">30% capacity</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <p id="updateInfo" class="update-info">
+  <i class="fas fa-info-circle"></i> Last updated: --
+</p>
+
+        </section>
+
+    
+        <section id="requests-section" class="requests-section container">
+
+            <h2 class="section-title">Active Requests</h2>
+            <p class="section-subtitle">Current blood and organ donation requests from patients</p>
+            
+            <div class="requests-filters">
+                <div class="search-bar-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by patient name, location or hospital...">
+                </div>
+                
+                <div class="filter-dropdowns">
+                    <select name="request-type">
+                        <option value="all">All Types</option>
+                        <option value="blood">Blood Requests</option>
+                        <option value="organ">Organ Requests</option>
+                    </select>
+                    
+                    <select name="urgency-level">
+                        <option value="all">All Urgency Levels</option>
+                        <option value="critical">Critical</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="standard">Standard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="requests-display-area">
+                <div class="no-requests-message">
+                    No active requests at the moment.
+                </div>
+            </div>
+        </section>
+
+        <div class="modal-overlay" id="requestBloodModal">
+    <div class="donor-register-modal" style="max-width: 550px;">
+        <div class="modal-header">
+            <h3>Request Blood or Organ</h3>
+            <button class="close-btn" onclick="closeModal('requestBloodModal')">&times;</button>
+        </div>
+        
+        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px;">
+            Submit an urgent request. Requests are instantly broadcast to available donors/banks.
+        </p>
+
+        <form id="request-form">
+            <div class="form-row">
+                <div class="form-group-modal">
+                    <label for="requestType">Requesting *</label>
+                    <select id="requestType" name="requestType" required>
+                        <option value="">Select Type</option>
+                        <option value="Blood">Blood</option>
+                        <option value="Organ">Organ</option>
+                    </select>
+                </div>
+                <div class="form-group-modal" id="bloodTypeGroup">
+                    <label for="requestBloodType">Blood Type *</label>
+                    <select id="requestBloodType" name="requestBloodType">
+                        <option value="">Select Blood Type</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group-modal hidden" id="organTypeGroup">
+                    <label for="organType">Organ Type *</label>
+                    <select id="requestOrganType" name="requestOrganType">
+                        <option value="">Select Organ</option>
+                        <option value="Kidney">Kidney</option>
+                        <option value="Liver">Liver</option>
+                        <option value="Heart">Heart</option>
+                        <option value="Lung">Lung</option>
+                        <option value="Pancreas">Pancreas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group-modal">
+                <label for="hospitalName">Hospital/Facility Name *</label>
+                <input type="text" id="hospitalName" name="hospitalName" placeholder="Enter Hospital Name" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group-modal">
+                    <label for="patientBloodType">Patient Blood Type *</label>
+                    <select id="patientBloodType" name="patientBloodType" required>
+                        <option value="">Select</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group-modal">
+                    <label for="urgency">Urgency Level *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select Level</option>
+                        <option value="Critical">Critical</option>
+                        <option value="Urgent">Urgent</option>
+                        <option value="Standard">Standard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group-modal">
+                <label for="contactNumber">Hospital Contact Number *</label>
+                <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter direct line number" required>
+            </div>
+
+            <div class="modal-footer-btns">
+                <button type="button" class="cancel-btn" onclick="closeModal('requestBloodModal')">Cancel</button>
+                <button type="submit" class="register-btn">Submit Request</button>
+            </div>
+        </form>
+    </div>
+</div>
+                </form>
+            </div>
+        </div>
+        
+        <section id="available-donors-section" class="available-donors-section container">
+            <h2 class="section-title">Available Donors</h2>
+            <p class="section-subtitle">Search and filter through our registered donor database</p>
+
+            <div class="donors-filters">
+                <div class="donors-search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by name or location...">
+                </div>
+                
+                <div class="donor-filter-dropdowns">
+                    <select name="blood-types">
+                        <option value="all">All Blood Types</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                    
+                    <select name="availability">
+                        <option value="all">All Availability</option>
+                        <option value="active">Active Donors</option>
+                        <option value="organ">Organ Donors</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="donors-display-area">
+                <div class="no-donors-message">
+                    No donors registered yet. Be the first to register!
+                </div>
+            </div>
+        </section>
+
+        
+        <div class="modal-overlay" id="donorRegisterModal">
+            <div class="donor-register-modal">
+                <div class="modal-header">
+                    <h3>Register as Donor</h3>
+                    <button class="close-btn" onclick="closeModal('donorRegisterModal')">&times;</button>
+                </div>
+                
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px;">
+                    Join our community of life-savers. Your information will be kept confidential.
+                </p>
+
+                <form id="donor-registration-form">
+                    <div class="form-group-modal">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-modal">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group-modal">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="Enter phone number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-modal">
+                            <label for="bloodType">Blood Type *</label>
+                            <select id="bloodType" required>
+                                <option value="">Select</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="form-group-modal">
+                            <label for="age">Age *</label>
+                            <input type="number" id="age" placeholder="Age" min="18" max="65" required>
+                        </div>
+                        <div class="form-group-modal">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" required>
+                                <option value="">Select</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                                <option value="O">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-modal">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group-modal">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" placeholder="State" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-modal">
+                        <label for="fullAddress">Full Address *</label>
+                        <input type="text" id="fullAddress" placeholder="Street address" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-modal">
+                            <label for="lastDonation">Last Donation Date</label>
+                            <input type="date" id="lastDonation">
+                        </div>
+                        <div class="form-group-modal">
+                            <label for="availability">Availability *</label>
+                            <select id="availability" required>
+                                <option value="">Select</option>
+                                <option value="Available">Available</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-modal">
+                        <label for="medicalConditions">Medical Conditions (if any)</label>
+                        <input type="text" id="medicalConditions" placeholder="None or specify conditions">
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="organDonorCheckbox">
+                        <label for="organDonorCheckbox">I'm also willing to be an organ donor</label>
+                    </div>
+
+                    <div class="modal-footer-btns">
+                        <button type="button" class="cancel-btn" onclick="closeModal('donorRegisterModal')">Cancel</button>
+                        <button type="submit" class="register-btn">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <button class="chatbot-button" id="openChatButton">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+
+        <div class="chat-window" id="chatbotWindow" style="display: none;">
+            <div class="chat-header">
+                <span>Lifelink Support Bot</span>
+                <button class="chat-close-btn" id="closeChatButton">&times;</button>
+            </div>
+            
+            <div class="chat-body" id="chatBody">
+                <p class="bot-message-style">Hello! I'm Lifelink Bot. How can I assist you with donations or blood inventory today?</p>
+                </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendChatButton"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+              <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+  <li><a href="donor-policy.html">Donor Policy</a></li>
+  <li><a href="privacy.html">Privacy</a></li>
+  <li><a href="sitemap.html">Sitemap</a></li>
+</ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Emergency Contact</h4>
+                <p>Hotline: +1-800-BLOOD</p>
+                <p>Email: urgent@lifelink.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Emergency Blood & Organ System. All rights reserved.
+        </div>
+    </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const now = new Date();
+    const options = {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    };
+
+    const formattedTime = now.toLocaleString("en-IN", options).replace(",", " at");
+    document.getElementById("updateInfo").innerHTML = 
+        `<i class="fas fa-info-circle"></i> Last updated: ${formattedTime} IST`;
+});
+</script>
+
+    <script src="js/main.js"></script> 
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

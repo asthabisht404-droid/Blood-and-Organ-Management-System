@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Emergency Blood & Organ System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <section class="form-section">
+        <h1 class="form-title">Create Your Lifelink Account</h1>
+        <form class="auth-form" id="registerForm">
+            
+            <div class="form-group-title">Account Details (Required)</div>
+
+            <div class="form-group">
+                <label for="username">Email / Username</label>
+                <input type="email" id="username" name="username" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create password" required>
+            </div>
+            
+            <hr>
+
+            <div class="form-group-title">Donor Profile Details</div>
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required>
+            </div>
+
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 555-123-4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" min="18" placeholder="Must be 18+" required>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="bloodType">Blood Type</label>
+                    <select id="bloodType" name="bloodType" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fullAddress">Full Address (Street, City, State, Zip)</label>
+                <input type="text" id="fullAddress" name="fullAddress" placeholder="123 Main St, Anytown, CA, 12345" required>
+            </div>
+
+            <div class="form-group">
+                <label for="medicalConditions">Medical Conditions</label>
+                <textarea id="medicalConditions" name="medicalConditions" rows="3" placeholder="List any chronic illness, allergies, medications, or type 'none'" required>none</textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="isOrganDonor" name="isOrganDonor">
+                <label for="isOrganDonor">I am willing to be an Organ Donor</label>
+            </div>
+
+            <p class="message" id="registerMessage"></p>
+            
+            <button type="submit" class="btn-primary">Register Account</button>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Emergency Blood & Organ System | Saving lives together ❤️</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

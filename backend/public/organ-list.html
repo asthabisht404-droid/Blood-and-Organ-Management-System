@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Organs - Lifelink Emergency System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <style>
+    /* === 1. BASE THEME VARIABLES (Your original variables) === */
+    :root {
+        --primary-bg: #f7f3f1;
+        --card-background: #ffffff;
+        --main-text: #2c3e50;
+        --light-text: #7f8c8d;
+        --accent-strong: #a05252;
+        --urgent-red: #e74c3c;
+        --action-green: #2ecc71; 
+        --action-green-hover: #27ae60;
+        --border-soft: #e0e0e0;
+        --background-soft: #f4f4f4; /* Light gray background for fields/badges */
+        --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.08); /* Nicer, more defined shadow */
+    }
+
+    /* === 2. GLOBAL & LAYOUT STYLES (Kept consistent with your original) === */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--main-text);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    /* HEADER & NAVIGATION STYLES - KEEPING THESE EXACTLY THE SAME */
+    header {
+        background-color: var(--card-background);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        padding: 10px 0;
+    }
+    nav.container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--urgent-red);
+        text-decoration: none;
+    }
+    .logo img {
+        height: 40px;
+        width: 40px;
+        margin-right: 6px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .nav-links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-links li {
+        margin-left: 20px;
+    }
+    .nav-links a {
+        text-decoration: none;
+        color: var(--main-text);
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+    .nav-links a:hover {
+        color: var(--urgent-red);
+    }
+    .homepage-profile-icon {
+        display: block;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        border-radius: 50%;
+        background-color: var(--urgent-red);
+        color: white;
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+    .btn-primary-small a {
+        background-color: var(--urgent-red);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+    .btn-primary-small a:hover {
+        background-color: #c74538;
+        color: white;
+    }
+    .homepage-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffa46f;
+  transition: all 0.3s ease;
+}
+
+.homepage-profile-icon:hover {
+  background-color: #ff5c5c;
+  transform: scale(1.05);
+}
+
+.profile-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} 
+
+    /* MAIN SECTION TITLES */
+    main.container {
+        padding: 40px 20px;
+        min-height: calc(100vh - 100px);
+    }
+    .section-title {
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--accent-strong);
+        margin-bottom: 8px;
+    }
+    .section-subtitle {
+        text-align: center;
+        color: var(--light-text);
+        margin-bottom: 40px;
+        font-size: 1.15rem;
+    }
+
+    /* Footer Style */
+    footer {
+        background-color: var(--main-text);
+        color: var(--primary-bg);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.9rem;
+        margin-top: 40px;
+    }
+
+    /* === 3. ORGAN LIST GRID AND CARD STYLES (FIXED ALIGNMENT) === */
+    .organ-list-grid {
+        display: grid;
+        /* Increased min size and gap for a cleaner layout */
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+        gap: 30px;
+        padding: 40px 0;
+    }
+    
+    .organ-card {
+        background-color: var(--card-background);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-soft);
+        
+        /* FIX: Use flex to align icon and text cleanly */
+        display: flex;
+        align-items: flex-start; /* Important: Aligns content to the top */
+        
+        border-left: 8px solid var(--action-green);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative; /* Necessary for absolute positioning of the button */
+    }
+    .organ-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .organ-card .icon {
+        font-size: 3rem;
+        color: var(--action-green); 
+        margin-right: 25px;
+        min-width: 50px; 
+        text-align: center;
+        padding-top: 5px; 
+    }
+    
+    /* Critical Status Styling */
+    .organ-card.critical-status {
+        border-left-color: var(--urgent-red);
+    }
+    .organ-card.critical-status .icon {
+        color: var(--urgent-red);
+    }
+
+    /* FIX: Allows the information block to fill the remaining width */
+    .organ-info {
+        flex-grow: 1;
+        display: flex; /* New: Make info a column flex container for spacing */
+        flex-direction: column;
+    }
+
+    /* FIX: Ensures proper heading alignment */
+    .organ-info h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--main-text);
+        margin-top: 0;
+        margin-bottom: 8px; 
+    }
+    
+    /* FIX: Styles for the data rows (Location, Contact, etc.) */
+    .organ-info p {
+        color: var(--light-text);
+        font-size: 1rem;
+        margin: 5px 0;
+        display: flex; /* Use flex to align icon/label/data on one line */
+        align-items: center;
+        gap: 8px; /* Space between icon and text */
+        line-height: 1.4;
+    }
+
+    /* Style for icons inside data rows (e.g., phone, map) */
+    .organ-info p .fas {
+        color: var(--urgent-red); /* Stronger color for utility icons */
+        font-size: 0.9rem;
+    }
+    
+    /* Style for the Blood Type badge */
+    .organ-info .blood-type { 
+        font-weight: 800;
+        color: var(--main-text);
+        background-color: var(--background-soft);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
+
+    /* Style for the Status Text */
+    .organ-info .status {
+        font-weight: 800;
+        color: var(--action-green);
+        display: inline-block;
+        margin-right: 15px;
+    }
+    
+    /* New: Styling for the 'View Donor' button */
+    .view-donor-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        padding: 8px 15px;
+        background-color: var(--urgent-red);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.2s;
+    }
+    .view-donor-button:hover {
+        background-color: #c74538;
+    }
+
+    /* --- 4. FORM CONTAINER STYLES (ENHANCED & SPACED) --- */
+    .organ-form-container {
+        background-color: var(--card-background);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: var(--shadow-soft);
+        max-width: 550px;
+        margin: 60px auto;
+        text-align: left;
+        border: none;
+    }
+    .organ-form-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: var(--main-text);
+    }
+    .organ-form-container input,
+    .organ-form-container select {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 25px;
+        border: 1px solid var(--border-soft);
+        border-radius: 10px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+        background-color: var(--background-soft);
+    }
+    .organ-form-container input:focus,
+    .organ-form-container select:focus {
+        border-color: var(--urgent-red);
+        box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        background-color: var(--card-background);
+    }
+    .organ-form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--urgent-red); 
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+        letter-spacing: 0.5px;
+    }
+    .organ-form-container button:hover {
+        background-color: #c74538;
+        transform: translateY(-1px);
+    }
+
+    /* --- 5. RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 600px) {
+        .organ-list-grid {
+            grid-template-columns: 1fr;
+        }
+        .organ-card {
+            padding: 25px;
+        }
+        .organ-card .view-donor-button {
+            position: static; /* Stack button on small screens */
+            margin-top: 15px;
+            text-align: center;
+        }
+        .organ-form-container {
+            margin: 40px 20px;
+            padding: 30px;
+        }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donor-list.html">Donors</a></li>
+                <li><a href="blood-bank.html">Blood Banks</a></li>
+                <li><a href="organ-list.html" style="color: var(--urgent-red); border-bottom: 2px solid var(--urgent-red); padding-bottom: 5px;">Organs</a></li>
+                <li><a href="about.html">About</a></li>
+                
+                <li id="navProfileLink" style="display: none;">
+  <a href="donor-profile.html" id="navProfileIcon" class="homepage-profile-icon">
+    <img src="ic.png" alt="Profile" class="profile-logo">
+  </a>
+</li>
+
+                <li id="navAuthButton" class="btn-primary-small">
+                    <a href="login.html">Login/Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Urgent Organ Availability</h2>
+        <p class="section-subtitle">Real-time status of organs currently available for transplant from registered donors.</p>
+
+        <div class="organ-list-grid" id="availableOrgansList">
+            <p>Loading available organs...</p>
+        </div>
+
+        <h3 class="section-title" style="font-size: 1.7rem; color: var(--main-text); margin-top: 60px;">Add Organ Availability</h3>
+        <div class="organ-form-container">
+            <form id="organ-availability-form">
+    <input type="hidden" id="organDonorEmail" name="donorEmail" value=""> 
+
+    <div class="form-group-modal">
+        <label for="organTypeAvail">Organ Type *</label>
+        <select id="organTypeAvail" name="organType" required>
+            <option value="">Select Organ</option>
+            <option value="Kidney">Kidney</option>
+            <option value="Liver">Liver</option>
+            <option value="Heart">Heart</option>
+            <option value="Lung">Lung</option> <option value="Pancreas">Pancreas</option>
+        </select>
+    </div>
+
+    <div class="form-group-modal">
+        <label for="bloodTypeAvail">Blood Type *</label>
+        <input type="text" id="bloodTypeAvail" name="bloodType" placeholder="Donor Blood Type (e.g., O+)" required>
+    </div>
+
+    <div class="form-group-modal">
+        <label for="locationAvail">Location (City, State) *</label>
+        <input type="text" id="locationAvail" name="location" placeholder="e.g., Chicago, IL" required>
+    </div>
+
+    <div class="form-group-modal">
+        <label for="contactAvail">Contact Phone Number *</label>
+        <input type="tel" id="contactAvail" name="contact" placeholder="e.g., (555) 123-4567" required>
+    </div>
+
+    <div class="modal-footer-btns">
+        <button type="submit" class="register-btn">Submit Availability</button>
+    </div>
+</form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">&copy; 2025 Lifelink Emergency System. All rights reserved.</div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

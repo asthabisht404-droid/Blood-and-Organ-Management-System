@@ -1,0 +1,2184 @@
+/* --- Global Styles & Variables (Updated) --- */
+:root {
+    --primary-color: #e57373;    /* Soft Coral/Red */
+    --secondary-color: #ffb74d;  /* Light Orange */
+    --accent-color: #ff8a65;     /* Slightly deeper coral for CTAs */
+    --background-soft: #fbf9f7;  /* Very soft, off-white background */
+    --card-background: #ffffff;
+    --text-dark: #3e2723;        /* Dark Brown/Slate */
+    --text-light: #795548;       /* Muted Brown for subtitles */
+    --border-soft: #f5f5f5;
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --urgent-red: #ef5350;       /* Red for Urgent tag */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-soft); /* Soft background */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* === HEADER & NAVIGATION STYLES === */
+        header {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+        nav.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            text-decoration: none;
+        }
+        .logo img {
+            height: 40px;
+            width: 40px;
+            margin-right: 6px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--main-text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--urgent-red);
+        }
+        
+        .btn-primary-small a {
+            background-color: var(--urgent-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-primary-small a:hover {
+            background-color: #c74538;
+            color: white;
+        }
+/* --- Hero Section --- */
+.hero-section {
+    background: var(--background-soft); /* Keeping it flat and soft */
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.tagline {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.hero-section .mission {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(229, 115, 115, 0.3);
+}
+
+.action-btn:hover {
+    background-color: #e55e5e;
+}
+
+/* Keeping Find Donors slightly lighter if needed */
+.action-btn:first-child {
+    background-color: #ffccbc; /* Lighter shade */
+    color: var(--text-dark);
+    box-shadow: none;
+}
+.action-btn:first-child:hover {
+    background-color: #ff9898;
+}
+
+/* --- Section Titles & Structure --- */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-dark);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+/* Service Card (Simplified from the image) */
+.services-section {
+    padding: 40px 0;
+}
+
+.service-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.service-card {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    flex: 1;
+    max-width: 350px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--border-soft); /* Subtle border */
+}
+
+.service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* --- Stats Section --- */
+.stats-section {
+    background-color: var(--background-soft);
+    padding: 60px 0;
+    margin-top: 40px;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+}
+
+.stat-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 5px 0;
+}
+
+.stat-label {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+/* --- Blood Inventory Section (Crucial Update) --- */
+.inventory-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.blood-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns as per the image */
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.blood-card {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-soft);
+    text-align: left;
+    transition: transform 0.3s;
+    border: 1px solid var(--border-soft);
+    position: relative;
+}
+
+.blood-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blood-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.blood-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.blood-type-label {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.blood-type-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.blood-details {
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.blood-details .available {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.blood-details .units {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Progress Bar Styling */
+.progress-bar-container {
+    height: 8px;
+    background-color: var(--border-soft);
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.capacity-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Urgent Tag Styling */
+.urgent-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--urgent-red);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(239, 83, 80, 0.4);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding-top: 40px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #4e342e;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.footer-links, .footer-contact {
+    max-width: 250px;
+}
+
+.footer-links h4, .footer-contact h4 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.footer-links a {
+    color: #d7ccc8;
+    display: block;
+    padding: 5px 0;
+}
+
+.footer-contact p {
+    margin-bottom: 5px;
+    color: #d7ccc8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8rem;
+    color: #a1887f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .blood-inventory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .blood-inventory-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-actions {
+        flex-direction: column;
+    }
+}
+
+/* --- Requests Section --- */
+.requests-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.requests-filters {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+}
+
+/* Search Bar Styling */
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.search-bar-container i {
+    color: var(--text-light);
+    margin-right: 10px;
+}
+
+.search-bar-container input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 5px 0;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+/* Dropdown Filters Styling */
+.filter-dropdowns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.filter-dropdowns select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background-color: var(--card-background);
+    color: var(--text-dark);
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23795548%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.1L146.2%20209.7%2018.4%2074.5a17.6%2017.6%200%200%200-25.1%2024.5l130%20128a17.6%2017.6%200%200%200%2025.2%200l130-128a17.6%2017.6%200%200%200-12.8-29.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+    min-width: 250px;
+    transition: box-shadow 0.3s;
+}
+
+.filter-dropdowns select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.2);
+}
+
+
+/* Requests Display Area (Empty State) */
+.requests-display-area {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-soft);
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 50px 20px;
+    min-height: 200px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-requests-message {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .filter-dropdowns {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    .filter-dropdowns select {
+        min-width: 100%;
+    }
+}
+
+/* --- Available Donors Section Styles --- */
+.available-donors-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: var(--background-soft);
+}
+
+.donors-filters {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+}
+
+/* Donor Search Bar */
+.donors-search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.donors-search-bar i {
+    color: var(--text-light);
+    margin-right: 10px;
+}
+
+.donors-search-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 5px 0;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+/* Donor Filter Dropdowns (reusing existing styles where possible) */
+.donor-filter-dropdowns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.donor-filter-dropdowns select {
+    /* Inherit existing select styles */
+    padding: 12px 15px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background-color: var(--card-background);
+    color: var(--text-dark);
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23795548%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.1L146.2%20209.7%2018.4%2074.5a17.6%2017.6%200%200%200-25.1%2024.5l130%20128a17.6%2017.6%200%200%200%2025.2%200l130-128a17.6%2017.6%200%200%200-12.8-29.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+    min-width: 250px;
+}
+
+/* Donor Display Area (Empty State) */
+.donors-display-area {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-soft);
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 50px 20px;
+    min-height: 200px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-donors-message {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 20px;
+}
+
+/* --- Modal & Form Styles (Register as Donor) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.donor-register-modal {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto; /* Allows scrolling for long forms */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.3s;
+}
+.close-btn:hover {
+    color: var(--urgent-red);
+}
+
+/* Form Layout (2 columns for smaller inputs) */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group-modal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-modal label {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group-modal input,
+.form-group-modal select {
+    padding: 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--background-soft);
+    transition: border-color 0.3s;
+}
+
+.form-group-modal input:focus,
+.form-group-modal select:focus {
+    border-color: var(--primary-color);
+    background-color: white;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Button Group at the bottom */
+.modal-footer-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.cancel-btn {
+    background: var(--border-soft);
+    color: var(--text-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* Responsive adjustments for form */
+@media (max-width: 650px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* --- Floating Chatbot Button (Mandatory for all pages) --- */
+.chatbot-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background-color: var(--primary-color); /* Soft Coral */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(229, 115, 115, 0.4);
+    z-index: 9999; /* Ensure it stays above everything */
+    transition: transform 0.2s ease, background-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatbot-button:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* --- Chat Window Modal --- */
+.chat-window {
+    position: fixed;
+    bottom: 100px; /* Above the button */
+    right: 25px;
+    width: 350px;
+    height: 450px;
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    z-index: 9998;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+}
+
+.chat-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: var(--background-soft);
+    font-size: 0.95rem;
+}
+
+.chat-input-container {
+    padding: 10px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    background-color: var(--card-background);
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.chat-input-container button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-input-container button:hover {
+    background-color: #ff9800;
+}
+
+/* --- Active Request Card Styles (for the Requests Display Area) --- */
+.requests-display-area {
+    /* Change display to grid to show multiple cards */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px; /* Adjust padding for better card spacing */
+    min-height: 0; /* Override previous min-height for empty state */
+    /* Remove text-align: center if you want cards left-aligned */
+}
+
+.request-card {
+    background-color: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--primary-color);
+    text-align: left;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.request-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.request-card .request-type {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.request-card .request-hospital {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.request-card .request-patient-type {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-soft);
+}
+
+.request-card .request-urgency {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Urgency Color Tags */
+.request-card.critical {
+    border-color: #ff4d4d; /* Bright Red */
+}
+.request-card.urgent {
+    border-color: #ff9800; /* Orange */
+}
+.request-card.standard {
+    border-color: #4CAF50; /* Green */
+}
+
+.request-card.critical .request-urgency {
+    background-color: #ff4d4d;
+    color: white;
+}
+.request-card.urgent .request-urgency {
+    background-color: #ffcc80;
+    color: var(--text-dark);
+}
+.request-card.standard .request-urgency {
+    background-color: #c8e6c9;
+    color: var(--text-dark);
+}
+
+/* ======================================= */
+/* 1. CHATBOT BUTTON & WINDOW POSITIONING  */
+/* ======================================= */
+
+/* Main button that opens the chat */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color, #ea5858);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 1.5em;
+    z-index: 1000;
+    transition: transform 0.2s;
+}
+
+.chatbot-button:hover {
+    transform: scale(1.05);
+}
+
+/* Main chat window container */
+.chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px; 
+    height: 450px; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Chat window header */
+.chat-header {
+    background-color: var(--primary-color, #ea5858);
+    color: white;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Close button inside the header */
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* ============================ */
+/* 2. CHAT BODY & MESSAGE STYLES */
+/* ============================ */
+
+/* Main scrolling area for messages */
+.chat-body {
+    flex-grow: 1; 
+    padding: 15px;
+    overflow-y: auto; 
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+}
+
+/* User's Message (Right Side) */
+.user-message-style {
+    /* Layout Properties */
+    display: inline-block; /* Makes the box wrap tightly around the text (the "bubble") */
+    margin-left: auto;    /* Pushes the bubble to the right */
+    margin-right: 0;
+    text-align: left;     
+    
+    /* Appearance Properties */
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    background-color: var(--primary-color, #ea5858); /* Primary color for user */
+    color: white;             
+    font-size: 0.9em;
+}
+
+/* Bot's Message (Left Side) */
+.bot-message-style {
+    /* Layout Properties */
+    display: inline-block; /* Makes the box wrap tightly around the text (the "bubble") */
+    margin-right: auto;   /* Pushes the bubble to the left */
+    margin-left: 0;
+    text-align: left;     
+
+    /* Appearance Properties */
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 90%;
+    word-wrap: break-word;
+    background-color: #e5e5e5; /* Light Gray for the bot */
+    color: #333;               
+    font-size: 0.9em;
+}
+
+/* ================================== */
+/* 3. QUICK QUESTION BUTTONS & INPUTS */
+/* ================================== */
+
+/* Container for the small buttons */
+.quick-questions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-right: auto; 
+}
+
+/* Default style for the quick buttons */
+.quick-question-btn {
+    background-color: white;
+    border: 1px solid var(--primary-color, #ea5858);
+    color: var(--primary-color, #ea5858);
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: all 0.2s ease;
+}
+
+.quick-question-btn:hover {
+    background-color: var(--primary-color, #ea5858);
+    color: white;
+}
+
+/* Style for the button *after* it's clicked (simulates a user message) */
+.quick-question-btn.clicked {
+    background-color: var(--primary-color, #ea5858); 
+    color: white;             
+    border-color: var(--primary-color, #ea5858);
+    
+    /* Layout correction to move it right, simulating user message */
+    margin-left: auto;        
+    margin-right: 0;
+    
+    /* Make it look exactly like the user message bubble */
+    border-radius: 15px;
+    padding: 8px 12px;
+}
+
+/* Style for Action Buttons inside Bot's Response (The actionable instructions) */
+.action-response-btn {
+    background-color: #4CAF50; /* Green/Action color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.9em;
+    display: block; /* Takes full width within the message bubble */
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.action-response-btn:hover {
+    background-color: #45a049;
+}
+
+
+/* Input area at the bottom */
+.chat-input-container {
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+#chatInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 8px;
+    outline: none;
+    font-size: 0.95em;
+}
+
+#sendChatButton {
+    background-color: var(--primary-color, #ea5858);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+#sendChatButton:hover {
+    background-color: #c94444; 
+}
+
+/* ======================== */
+/* 4. AUTHENTICATION STYLES */
+/* ======================== */
+
+.auth-body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.auth-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-card h2 {
+    color: var(--primary-color, #ea5858);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.full-width {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.auth-footer {
+    margin-top: 15px;
+    color: #777;
+}
+
+.auth-footer a {
+    color: var(--primary-color, #ea5858);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* --- Basic Reset and Global Styles --- */
+
+body {
+    font-family: Arial, sans-serif; /* Use a clean font */
+    background-color: #f8f5f4; /* Very light, warm background */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Form Section Layout --- */
+.form-section {
+    max-width: 700px;
+    width: 90%;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-title {
+    text-align: center;
+    color: #cb533d; /* Primary accent color */
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* --- Form Group Styling --- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    margin: 20px 0 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group-row > .form-group {
+    flex: 1; /* Make columns take equal width */
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding/border in element's total width */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #cb533d;
+    box-shadow: 0 0 0 3px rgba(203, 83, 61, 0.2); /* Soft focus ring */
+    outline: none;
+}
+
+select {
+    appearance: none; /* Remove default select styling */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4"><path fill="%23666666" d="M287 69.4a17.6 17.6 0 0 0-13.2-5.4H18.6A17.6 17.6 0 0 0 5.4 69.4a17.6 17.6 0 0 0-5.4 13.2v146.2a17.6 17.6 0 0 0 5.4 13.2 17.6 17.6 0 0 0 13.2 5.4h255.2a17.6 17.6 0 0 0 13.2-5.4 17.6 17.6 0 0 0 5.4-13.2V82.6a17.6 17.6 0 0 0-5.4-13.2z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px top 50%;
+    background-size: 12px auto;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* --- Checkbox Group --- */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-top: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: #cb533d; /* Theme the checkbox color */
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* --- Button Styling --- */
+.btn-primary {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #cb533d;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #a84231;
+}
+
+/* --- Message and Link --- */
+.message {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+/* Specific styling for error/success messages handled by main.js */
+.message.success {
+    background-color: #e6ffe6;
+    color: #006400;
+    border: 1px solid #006400;
+}
+
+.message.error {
+    background-color: #ffe6e6;
+    color: #cb533d;
+    border: 1px solid #cb533d;
+}
+
+.auth-form p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.auth-form a {
+    color: #cb533d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #eee;
+    margin: 25px 0;
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+/* --- Donor Profile Layout and Container --- */
+
+/* Reset body for the profile page specifically */
+.profile-body {
+    background-color: #f8f5f4; /* Light warm background */
+    min-height: 100vh;
+    padding: 20px 0 60px;
+}
+
+.profile-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 40px; /* Space between sidebar and content */
+    align-items: flex-start; /* Aligns content to the top */
+}
+
+/* --- Back to Home Link --- */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+.back-link:hover {
+    background-color: #ffeaea; /* Light pink hover */
+    color: #cb533d;
+}
+
+.back-link i {
+    margin-right: 8px;
+}
+
+/* --- Left Sidebar (Profile Card) --- */
+.profile-sidebar {
+    flex: 0 0 320px; /* Fixed width */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #f7e0da; /* Light pink background */
+    color: #cb533d; /* Text color for initials */
+    font-size: 40px;
+    line-height: 100px;
+    margin: 0 auto 15px;
+    font-weight: 600;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* --- Badges (Blood Type and Organ Donor) --- */
+.profile-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.blood-type-badge {
+    background-color: #ffeaea; /* Very light red/pink */
+    color: #cb533d;
+    border: 1px solid #cb533d;
+}
+
+.organ-donor-badge {
+    background-color: #f0f0f0;
+    color: #999;
+    border: 1px solid #ccc;
+}
+
+.organ-donor-badge::before {
+    content: '♡'; /* Small heart symbol */
+    color: #cb533d;
+    margin-right: 5px;
+}
+
+/* --- Contact Info List --- */
+.profile-contact-item {
+    text-align: left;
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 12px;
+    padding-left: 10px;
+}
+
+.profile-contact-item i {
+    color: #cb533d;
+    margin-right: 12px;
+    width: 18px; /* Fixed width for icon alignment */
+    text-align: center;
+}
+
+/* --- Edit Profile Button --- */
+.edit-profile-btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: transparent;
+    border: 1px solid #cb533d;
+    color: #cb533d;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-btn:hover {
+    background-color: #ffeaea;
+}
+
+.edit-profile-btn i {
+    margin-right: 8px;
+}
+
+/* --- Right Content Area (Tabs) --- */
+.profile-content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Tab Navigation Styling --- */
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 0 20px;
+}
+
+.tab-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.tab-button.active {
+    color: #cb533d; /* Active tab text color */
+}
+
+/* Underline for active tab */
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Position it exactly on the border */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #cb533d;
+    border-radius: 2px 2px 0 0;
+}
+
+/* --- Tab Content Styling --- */
+.tab-content {
+    padding: 30px;
+    display: none; /* Hidden by default */
+}
+
+.tab-content.active-tab {
+    display: grid; /* Used for Profile Details grid layout */
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 50px; /* Vertical and horizontal gap */
+}
+
+/* Force specific details to take full width (like Address or Medical Conditions) */
+.detail-group.full-row {
+    grid-column: 1 / -1;
+}
+
+.detail-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.detail-value {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Style for the requests tab content */
+#myRequests {
+    /* Override grid display when it's the active tab */
+    display: block; 
+}
+
+#myRequests h3 {
+    font-size: 20px;
+    color: #cb533d;
+    margin-bottom: 20px;
+}
+
+.no-data-message {
+    text-align: center;
+    color: #999;
+    padding: 30px;
+    border: 1px dashed #eee;
+    border-radius: 8px;
+}
+
+/* ================================================= */
+/* === ACTIVE REQUESTS SECTION STYLING (COMPACT) === */
+/* ================================================= */
+
+.requests-section {
+    margin-top: 30px;
+}
+
+/* 1. Grid Container: Ensures more requests fit on screen */
+.requests-display-area {
+    display: grid;
+    /* Min width reduced to 280px to fit more on a row */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.request-card {
+    background: #ffffff;
+    border: 1px solid #e7eaed;
+    border-radius: 10px;
+    padding: 15px; /* Reduced padding for compactness */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); 
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.request-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Urgency and Critical Tags */
+
+.critical-tag {
+    /* Style for the "CRITICAL NEED" tag */
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #e74c3c; 
+    color: white;
+    padding: 6px 10px; /* Reduced padding */
+    border-bottom-left-radius: 8px;
+    font-size: 0.7rem; /* Smaller font */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+/* 3. Header Styling */
+
+.request-header-content {
+    display: flex;
+    align-items: flex-start; /* Align icon to the top of text */
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.request-icon {
+    font-size: 1.8rem; /* Smaller icon */
+    color: #3498db; 
+    margin-right: 12px;
+    padding-top: 2px;
+}
+
+.request-hospital {
+    font-size: 0.8rem; /* Smaller text */
+    color: #7f8c8d;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.request-item-needed {
+    margin: 0;
+    font-size: 1.2rem; /* Smaller main heading */
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* 4. Details Grid: Two columns now used for Urgency and Patient Type */
+
+.request-details {
+    /* Use a simpler flex layout for this version to handle the left badge */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column; 
+    font-size: 0.9rem;
+    padding-right: 20px;
+    min-width: 50%; /* Ensure two items per row */
+    margin-bottom: 8px;
+}
+
+.detail-item p {
+    font-weight: 600;
+    color: #34495e; 
+    margin: 0 0 3px 0;
+    font-size: 0.75rem; /* Smaller label */
+    text-transform: uppercase;
+}
+
+.detail-item span, .detail-item a {
+    font-weight: 500;
+    color: #2c3e50; 
+    font-size: 0.9rem; /* Smaller value */
+}
+
+
+/* 5. Urgency Badge (Moved to Left Side) */
+/* We will re-style the Urgency element to look like a badge on the left */
+
+.urgency-badge-container {
+    /* New wrapping container for the urgency element to put it on the left */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.urgency-level {
+    /* Base style for the urgency pill */
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px; 
+    font-size: 0.8rem;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* Color Themes for Urgency */
+.urgency-critical {
+    background-color: #fcebeb;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+}
+
+.urgency-urgent { /* Using 'urgent' to match your image */
+    background-color: #fff3e0;
+    color: #f39c12;
+    border: 1px solid #f39c12;
+}
+
+.urgency-normal {
+    background-color: #e6f7ff;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+/* 6. Action Button */
+
+.request-card button {
+    width: 100%;
+    padding: 10px; /* Smaller padding */
+    background-color: #1abc9c; 
+    font-size: 0.95rem;
+}
+
+.request-card button:hover {
+    background-color: #16a085;
+}
+
+.homepage-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffa46f;
+  transition: all 0.3s ease;
+}
+
+.homepage-profile-icon:hover {
+  background-color: #ff5c5c;
+  transform: scale(1.05);
+}
+
+.profile-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-content .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-content .logo img {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(255, 183, 77, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-content .logo img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(255, 183, 77, 0.45);
+}
+
+.footer-content .logo span {
+    font-size: 90px;
+    font-weight: 700;
+    color: #ffb74d; /* soft orange tone to match homepage */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-content .logo span:hover {
+    color: #ffe0b2; /* lighter orange on hover */
+    transform: translateY(-2px);
+}
+
+
+/* --- Donors Display --- */
+.donors-display-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.donor-card {
+  background: #fef7ff;
+  border: 1px solid #ffe2e2;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.donor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.donor-card h3 {
+  color: #c0392b;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.donor-card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.status.active {
+  background: #d4efdf;
+  color: #1e8449;
+}
+
+.status.inactive {
+  background: #f9d6d5;
+  color: #c0392b;
+}
+
+/* --- No Donors Message --- */
+.no-donors-message {
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+  grid-column: 1 / -1;
+  background: #fff9f9;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .donors-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .donor-card {
+    text-align: center;
+  }
+}
+
+/* -------------------------------
+   CHATBOT CONTAINER
+----------------------------------*/
+#chatbotWindow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 340px;
+    height: 450px;
+    background: #ffffff;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.20);
+    overflow: hidden;
+    z-index: 9999;
+    animation: popup 0.25s ease-out;
+}
+
+@keyframes popup {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Open Chat Button */
+#openChatButton {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: #e63946;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
+    transition: 0.2s ease;
+}
+
+#openChatButton:hover {
+    transform: scale(1.08);
+}
+
+/* Close Button */
+#closeChatButton {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 22px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #444;
+}
+
+/* Header */
+#chatHeader {
+    padding: 15px;
+    background: #e63946;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Chat Body */
+#chatBody {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #fafafa;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+#chatBody::-webkit-scrollbar {
+    width: 6px;
+}
+#chatBody::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* -------------------------------
+      CHAT BUBBLES
+----------------------------------*/
+
+/* User Message */
+.user-message-style {
+    background: #e63946;
+    color: #fff;
+    padding: 10px 14px;
+    max-width: 80%;
+    border-radius: 15px 15px 0px 15px;
+    margin: 8px 0;
+    margin-left: auto;
+    font-size: 14px;
+    display: inline-block;
+    animation: fadeIn 0.25s ease-in;
+}
+
+/* Bot Message */
+.bot-message-style {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    color: #333;
+    padding: 10px 14px;
+    max-width: 80%;
+    border-radius: 15px 15px 15px 0px;
+    margin: 8px 0;
+    font-size: 14px;
+    display: inline-block;
+    animation: fadeIn 0.25s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------
+      QUICK QUESTION BUTTONS
+----------------------------------*/
+.quick-questions-container {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quick-question-btn {
+    padding: 8px 12px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #444;
+    transition: 0.2s;
+}
+
+.quick-question-btn:hover {
+    background: #e63946;
+    color: #fff;
+}
+
+/* -------------------------------
+      ACTION BUTTONS (Donor, Request)
+----------------------------------*/
+.action-response-btn {
+    margin-top: 10px;
+    padding: 10px 14px;
+    width: 100%;
+    background: #e63946;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.action-response-btn:hover {
+    background: #d62828;
+    transform: scale(1.03);
+}
+
+/* -------------------------------
+      INPUT AREA
+----------------------------------*/
+#chatInputContainer {
+    display: flex;
+    padding: 12px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    align-items: center;
+    gap: 10px;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+#chatInput:focus {
+    border-color: #e63946;
+}
+
+#sendChatButton {
+    padding: 8px 12px;
+    background: #e63946;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+#sendChatButton:hover {
+    background: #d62828;
+    transform: scale(1.05);
+}

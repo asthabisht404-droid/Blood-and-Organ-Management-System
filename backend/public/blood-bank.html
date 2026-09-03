@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Directory - Emergency Blood & Organ System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === BASE THEME VARIABLES (Consistent with Donor Page) === */
+        :root {
+            --primary-bg: #f7f3f1;
+            --card-background: #ffffff;
+            --main-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --accent-strong: #a05252;
+            --urgent-red: #e74c3c;
+            --action-green: #2ecc71; 
+            --action-green-hover: #27ae60;
+            --border-soft: #e0e0e0;
+            --background-soft: #f9f9f9;
+            --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* === GLOBAL STYLES === */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--main-text);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* === HEADER & NAVIGATION STYLES === */
+        header {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+        nav.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--urgent-red);
+            text-decoration: none;
+        }
+        .logo img {
+            height: 40px;
+            width: 40px;
+            margin-right: 6px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--main-text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--urgent-red);
+        }
+        .homepage-profile-icon {
+            display: block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50%;
+            background-color: var(--urgent-red);
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .btn-primary-small a {
+            background-color: var(--urgent-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-primary-small a:hover {
+            background-color: #c74538;
+            color: white;
+        }
+
+        .homepage-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffa46f;
+  transition: all 0.3s ease;
+}
+
+.homepage-profile-icon:hover {
+  background-color: #ff5c5c;
+  transform: scale(1.05);
+}
+
+.profile-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+        /* === MAIN SECTION STYLES === */
+        main.container {
+            padding: 40px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-strong);
+            margin-bottom: 5px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* --- CONTROL BAR LAYOUT --- */
+        .control-bar {
+            display: grid;
+            grid-template-columns: 1fr auto; 
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-filters input, .search-filters select {
+            padding: 10px 15px;
+            border: 1px solid var(--border-soft);
+            border-radius: 8px;
+            background-color: var(--card-background);
+            font-size: 1rem;
+            color: var(--main-text);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            flex-grow: 1;
+        }
+
+        .search-filters input:focus, .search-filters select:focus {
+            border-color: var(--accent-strong);
+            box-shadow: 0 0 0 2px rgba(160, 82, 82, 0.2);
+        }
+        
+        .add-bank-btn {
+            padding: 12px 25px;
+            background-color: var(--urgent-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.1s;
+            white-space: nowrap;
+        }
+        .add-bank-btn i {
+            margin-right: 8px;
+        }
+        .add-bank-btn:hover {
+            background-color: #c74538;
+            transform: translateY(-1px);
+        }
+
+        /* --- BANK LIST GRID STYLES --- */
+        .bank-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 0;
+        }
+        
+        .bank-card {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--urgent-red);
+        }
+        .bank-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+        .bank-card h3 {
+            font-size: 1.4rem;
+            color: var(--main-text);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+        .bank-card p {
+            font-size: 0.95rem;
+            color: var(--main-text);
+            margin-bottom: 8px;
+        }
+        .bank-card .contact-info i {
+            color: var(--urgent-red);
+            margin-right: 8px;
+            width: 15px;
+            text-align: center;
+        }
+        .blood-types-tag {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-soft);
+        }
+        .blood-types-tag p {
+            font-weight: 600;
+            color: var(--main-text);
+            margin-bottom: 8px;
+        }
+        .blood-types-tag span {
+            display: inline-block;
+            background-color: #fce4e4;
+            color: var(--main-text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 0 5px 5px 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--urgent-red);
+        }
+        .btn-call {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: var(--action-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        .btn-call:hover {
+            background-color: var(--action-green-hover);
+        }
+
+        /* === MODAL STYLES (New) === */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 5% auto; 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .close-button {
+            color: var(--light-text);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--accent-strong);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Form Styles inside Modal */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--main-text);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            background-color: var(--background-soft);
+            color: var(--main-text);
+        }
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 10px;
+        }
+        .btn-submit-bank {
+            background-color: var(--action-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-submit-bank:hover {
+            background-color: var(--action-green-hover);
+        }
+
+        @media (max-width: 900px) {
+            .control-bar {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .search-filters {
+                flex-direction: column;
+            }
+            .search-filters input, .search-filters select {
+                width: 100%;
+                min-width: 0;
+            }
+            .add-bank-btn {
+                width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: 1 / 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Lifelink</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donor-list.html">Donors</a></li>
+                <li><a href="blood-bank.html" style="color: var(--urgent-red); border-bottom: 2px solid var(--urgent-red); padding-bottom: 5px;">Blood Banks</a></li>
+                <li><a href="organ-list.html">Organs</a></li>
+                <li><a href="about.html">About</a></li>
+                
+                <li id="navProfileLink" style="display: none;">
+  <a href="donor-profile.html" id="navProfileIcon" class="homepage-profile-icon">
+    <img src="ic.png" alt="Profile" class="profile-logo">
+  </a>
+</li>
+
+                <li id="navAuthButton" class="btn-primary-small">
+                    <a href="login.html">Login/Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="container">
+        <h2 class="section-title">National Blood Bank Directory</h2>
+        <p class="section-subtitle">Search, view, and contact registered blood banks and check their available inventory.</p>
+
+        <div class="control-bar">
+            <div class="search-filters">
+                <input type="text" id="bankSearchInput" placeholder="Search by Bank Name or City...">
+                <select id="bankFilterBloodType">
+                    <option value="">Filter by Blood Type Need</option>
+                    <option value="O+">O+ Needed</option>
+                    <option value="A-">A- Needed</option>
+                    <option value="Universal">O- & AB+ (Urgent)</option>
+                </select>
+            </div>
+            
+            <button class="add-bank-btn" onclick="openModal('addBankModal')"><i class="fas fa-plus"></i> Add New Blood Bank</button>
+        </div>
+
+        <div class="bank-list-grid" id="bankListGrid">
+            <p style="grid-column: 1 / -1; text-align: center; color: var(--light-text); padding: 30px;">Loading blood bank data...</p>
+        </div>
+    </main>
+    
+    <div id="addBankModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('addBankModal')">&times;</span>
+            <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--main-text);">Register New Blood Bank</h2>
+            
+            <form id="addBankForm" onsubmit="addNewBloodBank(event)">
+                <div class="form-grid">
+                    
+                    <div class="form-group full-width">
+                        <label for="bankName">Bank Name</label>
+                        <input type="text" id="bankName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankCity">City</label>
+                        <input type="text" id="bankCity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankState">State</label>
+                        <input type="text" id="bankState" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankPhone">Phone</label>
+                        <input type="tel" id="bankPhone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankType">Type</label>
+                        <select id="bankType" required>
+                            <option value="Hospital">Hospital Based</option>
+                            <option value="Regional">Regional Center</option>
+                            <option value="Mobile">Mobile Unit Base</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Available Blood Types (Select all that apply)</label>
+                        <select id="availableBloodTypes" multiple size="4">
+                            <option value="O+">O+</option>
+                            <option value="A+">A+</option>
+                            <option value="B+">B+</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O-">O-</option>
+                            <option value="A-">A-</option>
+                            <option value="B-">B-</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="add-bank-btn" onclick="closeModal('addBankModal')">Cancel</button>
+                        <button type="submit" class="btn-submit-bank">Register Bank</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SETUP & UTILITIES ---
+        function getStoredBanks() {
+            const defaultBanks = [
+                { id: 1, name: "City Central Blood Center", location: "123 Main St", city: "Cityville", state: "State A", phone: "(555) 123-4567", types: ["O+", "A-", "B+", "AB-"] },
+                { id: 2, name: "Red Cross Mobile Unit Base", location: "Regional Medical Park", city: "Cityville", state: "State A", phone: "(555) 987-6543", types: ["O-", "A+", "B+"] },
+                { id: 3, name: "University Hospital Blood Services", location: "East Campus Drive", city: "Big City", state: "State B", phone: "(555) 345-6789", types: ["O+", "A+", "B+", "AB+", "O-"] },
+            ];
+            
+            let banks = localStorage.getItem('bloodBanks');
+            if (!banks) {
+                localStorage.setItem('bloodBanks', JSON.stringify(defaultBanks));
+                banks = defaultBanks;
+            } else {
+                banks = JSON.parse(banks);
+                if (banks.length === 0) {
+                     localStorage.setItem('bloodBanks', JSON.stringify(defaultBanks));
+                     banks = defaultBanks;
+                }
+            }
+            return banks;
+        }
+
+        // --- MODAL CONTROL FUNCTIONS ---
+        window.openModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        };
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        };
+        
+        // --- ADD NEW BLOOD BANK FUNCTIONALITY ---
+        window.addNewBloodBank = function(event) {
+            event.preventDefault();
+
+            let allBanks = getStoredBanks();
+            const newId = allBanks.length > 0 ? Math.max(...allBanks.map(b => b.id)) + 1 : 1;
+
+            // Get selected blood types from the multi-select
+            const typeSelect = document.getElementById('availableBloodTypes');
+            const selectedTypes = Array.from(typeSelect.options)
+                                       .filter(option => option.selected)
+                                       .map(option => option.value);
+
+            // Gather data from the modal form
+            const newBank = {
+                id: newId,
+                name: document.getElementById('bankName').value,
+                city: document.getElementById('bankCity').value,
+                state: document.getElementById('bankState').value,
+                location: `${document.getElementById('bankCity').value}, ${document.getElementById('bankState').value}`,
+                phone: document.getElementById('bankPhone').value,
+                type: document.getElementById('bankType').value,
+                types: selectedTypes, // Available types
+            };
+
+            // Add the new bank to the list
+            allBanks.push(newBank);
+
+            // Save the updated list back to local storage
+            localStorage.setItem('bloodBanks', JSON.stringify(allBanks));
+            
+            // Refresh the grid
+            renderBankCards(allBanks);
+            
+            // Clear the form and close the modal
+            document.getElementById('addBankForm').reset();
+            closeModal('addBankModal');
+            alert(`New Blood Bank '${newBank.name}' registered successfully!`);
+        };
+
+
+        // --- RENDERING LOGIC ---
+        function renderBankCards(banks) {
+            const gridContainer = document.getElementById('bankListGrid');
+            gridContainer.innerHTML = ''; // Clear existing content
+
+            if (banks.length === 0) {
+                gridContainer.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: var(--light-text); padding: 30px;">No blood banks found matching the criteria.</p>`;
+                return;
+            }
+
+            banks.forEach(bank => {
+                const typesTags = bank.types.map(type => `<span>${type}</span>`).join('');
+                
+                const card = `
+                    <div class="bank-card">
+                        <h3>${bank.name}</h3>
+                        <p class="contact-info"><i class="fas fa-map-marker-alt"></i> Location: ${bank.city}, ${bank.state}</p>
+                        <p class="contact-info"><i class="fas fa-phone"></i> Contact: ${bank.phone}</p>
+                        <p class="contact-info"><i class="fas fa-hospital"></i> Type: ${bank.type}</p>
+                        <div class="blood-types-tag">
+                            <p>Available Types:</p>
+                            ${typesTags}
+                        </div>
+                        <a href="tel:${bank.phone.replace(/[^0-9]/g, '')}" class="btn-call"><i class="fas fa-phone"></i> Call Bank</a>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', card);
+            });
+        }
+        
+        // --- FILTERING LOGIC (Simplified for this page) ---
+        function applyFilters() {
+            const allBanks = getStoredBanks();
+            const searchInput = document.getElementById('bankSearchInput').value.toLowerCase();
+            const bloodTypeFilter = document.getElementById('bankFilterBloodType').value;
+            
+            const filteredBanks = allBanks.filter(bank => {
+                // 1. Search Filter
+                const matchesSearch = bank.name.toLowerCase().includes(searchInput) ||
+                                      bank.city.toLowerCase().includes(searchInput) ||
+                                      bank.phone.includes(searchInput);
+
+                // 2. Blood Type Needed Filter (This is a simplified mock filter)
+                let matchesBloodType = true;
+                if (bloodTypeFilter !== '') {
+                    // In a real app, this would check against a 'Needed Types' array.
+                    // Here, we just ensure it contains at least one of the general types for a mock check.
+                    if (bloodTypeFilter === 'Universal') {
+                        matchesBloodType = bank.types.includes('O-') || bank.types.includes('AB+');
+                    } else {
+                        matchesBloodType = bank.types.includes(bloodTypeFilter.replace(' Needed', ''));
+                    }
+                }
+
+                return matchesSearch && matchesBloodType;
+            });
+
+            renderBankCards(filteredBanks);
+        }
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial load
+            applyFilters(); 
+            
+            // Add event listeners to filters for live filtering
+            document.getElementById('bankSearchInput').addEventListener('input', applyFilters);
+            document.getElementById('bankFilterBloodType').addEventListener('change', applyFilters);
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
